@@ -10,7 +10,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header">Manage Kategori
-                <a href="{{ route('kategori.create') }}" class="btn btn-primary float-right">+ Add Kategori</a> 
+                <a href="{{ route('/kategori/create') }}" class="btn btn-primary float-right">+ Add Kategori</a> 
             </div>
             <div class="card-body">
                 {{ $dataTable->table() }}
