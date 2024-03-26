@@ -339,6 +339,11 @@ return [
             'url' => 'kategori',
             'icon' => 'far fa-fw fa-list-alt',
         ],
+        [
+            'text' => 'm_user',
+            'url' => '/m_user',
+            'icon' => 'far fa-fw fa-list-alt',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
