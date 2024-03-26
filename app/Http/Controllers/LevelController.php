@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\LevelDataTable;
+use App\Models\LevelModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\DataTables\LevelDataTable;
-use App\DataTables\LevelModel;
+use Illuminate\Support\Facades\Hash;
+use Monolog\Level;
 
 class LevelController extends Controller
 {
@@ -31,4 +33,40 @@ class LevelController extends Controller
     public function create() {
         return view('level.create');
     }  
+
+
+    public function store(Request $request)
+    {
+        LevelModel::create([
+            'level_kode' => $request->level_kode,
+            'level_nama' => $request->level_nama,
+        ]);
+
+        return redirect('/level');
+    }
+
+    public function edit($id)
+    {
+        $level = LevelModel::find($id);
+        return view('level.edit', ['data' => $level]);
+    }
+
+    public function edit_simpan($id, Request $request)
+    {
+        $level = LevelModel::find($id);
+        $level->level_kode = $request->level_kode;
+        $level->level_nama = $request->level_nama;
+
+        $level->save();
+        return redirect('/level');
+    }
+
+    public function delete($id)
+    {
+        $user = LevelModel::find($id);
+        $user->delete();
+
+        return redirect('/level');
+    }
 }
+

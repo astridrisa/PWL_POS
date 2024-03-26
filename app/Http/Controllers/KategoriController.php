@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\KategoriModel;
 use Illuminate\Http\Request;
 use App\DataTables\KategoriDataTable;
+use Illuminate\Contracts\View\View;
 
 class KategoriController extends Controller
 {

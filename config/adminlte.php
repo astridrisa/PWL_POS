@@ -324,14 +324,14 @@ return [
         ],
         [
             'text' => 'Manage User',
-            'url' => 'user',
-            'icon' => 'far fa-fw fa-list-alt',
+            'url' => '/user',
+            'icon' => 'fas fa-user-plus',
             'label_color' => 'success',
         ],
         [
             'text' => 'Manage Level',
-            'url' => 'level',
-            'icon' => 'far fa-fw fa-list-alt',
+            'url' => '/level',
+            'icon' => 'fas fa-users',
             'label_color' => 'success',
         ],
         [

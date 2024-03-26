@@ -9,9 +9,10 @@
 @section('content')
     <div class="container">
         <div class="card">
-            <div class="card-header">Manage Level</div>
+            <div class="card-header">Manage Level
+                <a href="{{ route('/level/create') }}" class="btn btn-primary float-right">+ Add Level</a>
+            </div>
             <div class="card-body">
-                <button  class="btn btn-success float-right text-decoration-none"><a href="{{ route('/level/create') }}" class="text-white">Add</a></button>
                 {{ $dataTable->table() }}
             </div>
         </div>
@@ -19,5 +20,5 @@
 @endsection
 
 @push('scripts')
-    {{ $dataTable->scripts() }}
+    {{ $dataTable->scripts()}}
 @endpush

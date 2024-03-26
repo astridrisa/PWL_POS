@@ -9,23 +9,8 @@
 @section('content')
     <div class="container">
         <div class="card">
-            <div class="card-header">Manage Kategori</div>
-            <div class="card-body">
-                <button  class="btn btn-success float-right text-decoration-none"><a href="{{ route('/user/create') }}" class="text-white">Add</a></button>
-                {{ $dataTable->table() }}
-            </div>
-        </div>
-    </div>
-@endsection
-
-@push('scripts')
-    {{ $dataTable->scripts() }}
-
-{{-- @section('content')
-    <div class="container">
-        <div class="card">
             <div class="card-header">Manage Kategori
-                <a href="{{ route('/kategori/create') }}" class="btn btn-primary float-right">+ Add Kategori</a> 
+                <a href="{{ route('/kategori/create') }}" class="btn btn-primary float-right">+ Add Kategori</a>
             </div>
             <div class="card-body">
                 {{ $dataTable->table() }}
@@ -36,4 +21,4 @@
 
 @push('scripts')
     {{ $dataTable->scripts()}}
-@endpush --}}
+@endpush

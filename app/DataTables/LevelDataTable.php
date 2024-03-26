@@ -23,11 +23,16 @@ class LevelDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($level) {
+            ->addColumn('action', function($level){
                 return '<a href="' . route('/level/edit', ['id' => $level->level_id]) . '" class="btn btn-primary mr-2">
                 <i class="fa fa-pencil-alt" style="color: white; font-size: 12px;"></i>
+                </a>' .
+                '<a href="' . route('/level/delete', ['id' => $level->level_id]) . '" class="btn btn-danger" 
+                onclick="return confirm(\'Are you sure want to delete?\')">
+                <i class="fa fa-trash" style="color: white; font-size: 12px;"></i>
                 </a>';
             })
+            ->rawColumns(['action'])
             ->setRowId('id');
     }
 
@@ -45,20 +50,20 @@ class LevelDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('level-table')
-            ->columns($this->getColumns())
-            ->minifiedAjax()
-            //->dom('Bfrtip')
-            ->orderBy(1)
-            ->selectStyleSingle()
-            ->buttons([
-                Button::make('excel'),
-                Button::make('csv'),
-                Button::make('pdf'),
-                Button::make('print'),
-                Button::make('reset'),
-                Button::make('reload')
-            ]);
+                    ->setTableId('level-table')
+                    ->columns($this->getColumns())
+                    ->minifiedAjax()
+                    //->dom('Bfrtip')
+                    ->orderBy(1)
+                    ->selectStyleSingle()
+                    ->buttons([
+                        Button::make('excel'),
+                        Button::make('csv'),
+                        Button::make('pdf'),
+                        Button::make('print'),
+                        Button::make('reset'),
+                        Button::make('reload')
+                    ]);
     }
 
     /**
@@ -67,15 +72,16 @@ class LevelDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            // Column::computed('action')
-            //     ->exportable(false)
-            //     ->printable(false)
-            //     ->width(60)
-            //     ->addClass('text-center'),
             Column::make('level_id'),
             Column::make('level_kode'),
             Column::make('level_nama'),
-            // Column::make('level_id'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
+            Column::computed('action')
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(100)
+                  ->addClass('text-center'),
         ];
     }
 
