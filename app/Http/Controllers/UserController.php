@@ -2,24 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserModel;
 use App\DataTables\UserDataTable;
+use App\Http\Requests\StorePostRequest;
+use App\Models\UserModel;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
 {
-    public function index(UserDataTable $dataTable)
+    public function index(UserDataTable $dataTable):View
     {
         return $dataTable->render('user.index');
     }
-    public function create() {
+    public function create(): View
+    {
         return view('user.create'); 
      }
  
-     public function store(Request $request)
+     public function store(StorePostRequest $request): RedirectResponse
      {
+        // The incoming request is valid...
+
+        // Retrieve the validated input data...
+        $request->validate();
+
+        // Retreive a portion of the validated input data...
+        $request->safe()->only(['username', 'nama', 'password', 'level_id']);
+        $request->safe()->except(['username', 'nama', 'password', 'level_id']);
+        
         UserModel::create([
             'username' => $request->username,
             'nama' => $request->nama,

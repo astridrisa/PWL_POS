@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\LevelDataTable;
+use App\Http\Requests\StorePostRequest;
 use App\Models\LevelModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Monolog\Level;
 
@@ -35,8 +35,17 @@ class LevelController extends Controller
     }  
 
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
+         // The incoming request is valid...
+
+        // Retrieve the validated input data...
+        $request->validate();
+
+        // Retrieve a portion of the validated input data...
+        $request->safe()->only(['level_kode', 'level_nama']);
+        $request->safe()->except(['level_kode', 'level_nama']);
+        
         LevelModel::create([
             'level_kode' => $request->level_kode,
             'level_nama' => $request->level_nama,
