@@ -34,3 +34,11 @@ Route::put('/kategori/update_simpan/{id}', [KategoriController :: class, 'update
 
 //Delete Kategori
 Route::get('/kategori/delete/{id}', [KategoriController::class, 'delete'])->name('/kategori/delete');
+
+// User
+Route::get('/user/create', [UserController::class, 'create'])->name('/user/create');
+Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('/user/edit');
+
+//Level
+Route::get('/level/create', [LevelController::class, 'create'])->name('/level/create');
+Route::get('/level/edit/{id}', [LevelController::class, 'edit'])->name('/level/edit');

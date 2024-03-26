@@ -323,6 +323,18 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text' => 'Manage User',
+            'url' => 'user',
+            'icon' => 'far fa-fw fa-list-alt',
+            'label_color' => 'success',
+        ],
+        [
+            'text' => 'Manage Level',
+            'url' => 'level',
+            'icon' => 'far fa-fw fa-list-alt',
+            'label_color' => 'success',
+        ],
+        [
             'text' => 'Kategori',
             'url' => 'kategori',
             'icon' => 'far fa-fw fa-list-alt',
