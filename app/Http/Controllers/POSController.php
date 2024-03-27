@@ -48,7 +48,7 @@ class POSController extends Controller
             'level_id' => $request->level_id,
         ]);
 
-        return redirect()->route('m_user.index')->with('success', 'user Berhasil Ditambahkan');
+        return redirect()->route('m_user.index')->with('success', 'User Berhasil Ditambahkan');
     }
 
     /**

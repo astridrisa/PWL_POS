@@ -26,8 +26,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="level_nama">Level Nama</label>
-                        <input type="text" class="form-control" id="level_nama" name="level_nama" placeholder="Level Nama">
+                        <label for="namaKetegori">Nama Kategori</label>
+                        <input type="text" class="form-control" id="kategori_nama" name="kategori_nama" placeholder="Kategori Nama">
                     </div>
                 </div>
                 <div class="card-footer">

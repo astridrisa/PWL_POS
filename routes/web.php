@@ -4,6 +4,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\POSController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -53,4 +54,8 @@ Route::get('/level/edit/{id}', [LevelController::class, 'edit'])->name('/level/e
 Route::put('/level/{id}', [LevelController::class, 'edit_simpan'])->name('/level/edit_simpan');
 Route::get('/level/delete/{id}', [LevelController::class, 'delete'])->name('/level/delete');
 
+//m_user
 Route::resource('m_user', POSController::class);
+
+//adminlte
+Route::get('/', [WelcomeController::class, 'index']);

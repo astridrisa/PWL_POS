@@ -28,11 +28,11 @@ class UserController extends Controller
         // The incoming request is valid...
 
         // Retrieve the validated input data...
-        $validated = $request->validate();
+        $request->validate();
 
         // Retreive a portion of the validated input data...
-        $validated = $request->safe()->only(['username', 'nama', 'password', 'level_id']);
-        $validated = $request->safe()->except(['username', 'nama', 'password', 'level_id']);
+        $request->safe()->only(['username', 'nama', 'password', 'level_id']);
+        $request->safe()->except(['username', 'nama', 'password', 'level_id']);
 
         UserModel::create([
             'username' => $request->username,
