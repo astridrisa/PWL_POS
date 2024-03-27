@@ -24,24 +24,34 @@
 @csrf
 <div class="col-xs-12 col-sm-12 col-md-12">
 <div class="form-group">
-<strong>Username:</strong>
-<input type="text" name="username" class="form-control"
-placeholder="Masukkan username"></input>
+    <strong>Username:</strong>
+    <input type="text" name="username" class="form-control"
+    placeholder="Masukkan username"></input>
 </div>
 </div>
+
 <div class="col-xs-12 col-sm-12 col-md-12">
-<div class="form-group">
-<strong>Nama:</strong>
-<input type="text" name="nama" class="form-control"
-placeholder="Masukkan nama"></input>
+    <div class="form-group">
+    <strong>Nama:</strong>
+    <input type="text" name="nama" class="form-control"
+    placeholder="Masukkan nama"></input>
 </div>
+</div>
+
+<div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group">
+        <strong>Level Id:</strong>
+        <input type="number" name="level_id" class="form-control" placeholder="Masukkan level id"></input>
+    </div>
+</div>
+
 <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="form-group">
     <strong>Password:</strong>
     <input type="password" name="password" class="form-control"
     placeholder="Masukkan password"></input>
-    </div>
-    </div>
+</div>
+</div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
     <button type="submit" class="btn btn-primary">Submit</button>
     </div>

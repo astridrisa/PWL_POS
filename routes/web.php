@@ -37,6 +37,7 @@ Route::put('/kategori/update_simpan/{id}', [KategoriController :: class, 'update
 Route::get('/kategori/delete/{id}', [KategoriController::class, 'delete'])->name('/kategori/delete');
 
 //Manage User
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::get('/user/create', [UserController::class, 'create'])->name('/user/create');
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('/user/edit');
 Route::get('/user', [UserController :: class, 'index'])->name('user.index');

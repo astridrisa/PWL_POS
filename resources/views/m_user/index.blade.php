@@ -17,10 +17,10 @@
 <tr>
 <th width="20px" class="text-center">User id</th>
 <th width="150px" class="text-center">Level id</th>
-<th width="200px"class="text-center">username</th>
-<th width="200px"class="text-center">nama</th>
-<th width="150px"class="text-center">password</th>
-<th width="900000px"class="text-center"></th>
+<th width="200px"class="text-center">Username</th>
+<th width="200px"class="text-center">Nama</th>
+<th width="150px"class="text-center">Password</th>
+<th width="900000px"class="text-center">Actions</th>
 </tr>
 @foreach ($useri as $m_user)
 <tr>
