@@ -72,6 +72,7 @@ class UserController extends Controller
      }
 
      //Menyimpan data user baru
+    //Retreiving or Creating Models
     public function store(Request $request)
     {
         $request->validate([    
@@ -152,6 +153,7 @@ class UserController extends Controller
     }
 
     //Menghapus data user
+    // Not Found Exceptions
     public function destroy(String $id)
     {
         $check = UserModel::find($id);
@@ -169,6 +171,7 @@ class UserController extends Controller
         }
     }
 }
+
     // public function index(UserDataTable $dataTable)
     // {
         
