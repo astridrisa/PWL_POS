@@ -65,6 +65,11 @@ class AuthController extends Controller
             ->withErrors(['login_gagal' => 'Pastikan kembali username dan password yang dimasukan sudah benar']);
     }
 
+    public function register(){
+        // tampilan halaman form register
+        return view('register');
+    }
+
     // aksi form register
     public function proses_register(Request $request)
     {
