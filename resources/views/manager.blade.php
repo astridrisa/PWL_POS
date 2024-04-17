@@ -4,7 +4,7 @@
 
 @section('subtitle', 'Admin')
 @section('content_header_title', 'Home')
-@section('content_header_subtitle', 'Admin')
+@section('content_header_subtitle', 'Manager')
 
 @section('content')
     <div class="container">
@@ -23,4 +23,3 @@
 
 @push('js')
 @endpush
-
