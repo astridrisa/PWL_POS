@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\KategoriController;
 use App\Http\Controllers\Api\BarangController;
+use App\Http\Controllers\Api\TransaksiController;
 
 // register
 Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
@@ -46,6 +47,13 @@ Route::post('barang', [BarangController::class, 'store']);
 Route::get('barang/{barang}', [BarangController::class, 'show']);
 Route::put('barang/{barang}', [BarangController::class, 'update']);
 Route::delete('barang/{barang}', [BarangController::class, 'destroy']);
+
+// CRUD TRANSAKSI
+Route::get('transaksi', [TransaksiController::class, 'index']);
+Route::post('transaksi', [TransaksiController::class, 'store']);
+Route::get('transaksi/{transaksi}', [TransaksiController::class, 'show']);
+Route::put('transaksi/{transaksi}', [TransaksiController::class, 'update']);
+Route::delete('transaksi/{transaksi}', [TransaksiController::class, 'destroy']);
 
 // REGISTER 1 JOBSHEET 11
 Route::post('/register1', App\Http\Controllers\Api\RegisterController::class)->name('register1');
