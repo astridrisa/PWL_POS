@@ -29,10 +29,10 @@ class BarangController extends Controller
     // Ambil data barang dalam bentuk json untuk datatables
     public function list(Request $request)
     {
-        $barangs = BarangModel::select('barang_id', 'kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual')
+        $barang = BarangModel::select('barang_id', 'kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual', 'image')
                 ->with('kategori');
 
-        return DataTables::of($barangs)
+        return DataTables::of($barang)
             ->addIndexColumn() // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
             ->addColumn('aksi', function ($barang) {
                 $btn = '<a href="'.url('/barang/' . $barang->barang_id).'" class="btn btn-info btn-sm">Detail</a> ';
@@ -72,10 +72,25 @@ class BarangController extends Controller
             'kategori_id' => 'required',
             'barang_nama' => 'required',
             'harga_beli' => 'required',
-            'harga_jual' => 'required'
+            'harga_jual' => 'required',
+            'image' => 'required|file|image|max:2048'
         ]);
 
-        BarangModel::create($request->all());
+        $extfile = $request->image->getClientOriginalName();
+        $namaFile = 'web-' . time() . "." . $extfile;
+
+        $path = $request->image->move('gbrStarterCode', $namaFile);
+        $path = str_replace("\\", "//", $path);
+        $pathBaru = asset('gbrStarterCode/' . $namaFile);
+
+        BarangModel::create([
+            'kategori_id'   => $request->kategori_id,
+            'barang_kode'   => $request->barang_kode,
+            'barang_nama'   => $request->barang_nama, 
+            'harga_beli'    => $request->harga_beli,
+            'harga_jual'    => $request->harga_jual,
+            'image'         => $pathBaru
+        ]);
 
         return redirect('/barang')->with('success', 'Data barang berhasil ditambahkan');
     }
@@ -83,7 +98,7 @@ class BarangController extends Controller
     // Menampilkan detail barang
     public function show(string $id)
     {
-        $barang = BarangModel::find($id)->with('kategori')->first();
+        $barang = BarangModel::with('kategori')->find($id);
         $breadcrumb = (object) [
             'title' => 'Detail Barang',
             'list' => ['Home', 'Barang', 'Detail']
@@ -124,10 +139,25 @@ class BarangController extends Controller
             'kategori_id' => 'required',
             'barang_nama' => 'required',
             'harga_beli' => 'required',
-            'harga_jual' => 'required'
+            'harga_jual' => 'required',
+            'image' => 'required|file|image|max:2048'
         ]);
 
-        BarangModel::find($id)->update($request->all());
+        $extfile = $request->image->getClientOriginalName();
+        $namaFile = 'web-' . time() . "." . $extfile;
+
+        $path = $request->image->move('gbrStarterCode', $namaFile);
+        $path = str_replace("\\", "//", $path);
+        $pathBaru = asset('gbrStarterCode/' . $namaFile);
+
+        BarangModel::find($id)->update([
+            'kategori_id'   => $request->kategori_id,
+            'barang_kode'   => $request->barang_kode,
+            'barang_nama'   => $request->barang_nama, 
+            'harga_beli'    => $request->harga_beli,
+            'harga_jual'    => $request->harga_jual,
+            'image'         => $pathBaru
+        ]);
 
         return redirect('/barang')->with('success', 'Data barang berhasil diubah');
     }
