@@ -78,6 +78,7 @@ class UserDataTable extends DataTable
             Column::make('nama'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::make('image'),
             Column::computed('action')
             ->exportable(false)
             ->printable(false)

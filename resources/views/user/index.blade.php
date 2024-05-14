@@ -38,6 +38,7 @@
                     <th>Username</th>
                     <th>Nama</th>
                     <th>Level Pengguna</th>
+                    <th>Foto Pengguna</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -87,6 +88,15 @@
                     orderable: false,
                     searchable: false
                 },
+                {
+                        data: "image",
+                        className: "",
+                        orderable: false,
+                        searchable: false,
+                        render: function(data, type, row) {
+                            return '<img src="' + data + '" alt="Image" class="img-thumbnail" width="100">';
+                        }
+                    },
                 {
                     data: "aksi",
                     className: "",

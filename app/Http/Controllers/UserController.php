@@ -31,7 +31,7 @@ class UserController extends Controller
     // Ambil data user dalam bentuk json untuk datatables
     public function list(Request $request)
     {
-        $users = UserModel::select('user_id', 'username', 'nama', 'level_id')
+        $users = UserModel::select('user_id', 'username', 'nama', 'level_id','image')
             ->with('level');
         
         // Filter data user berdasarkan level_id
@@ -80,14 +80,23 @@ class UserController extends Controller
             'username' => 'required|string|min:3|unique:m_user,username',
             'nama' => 'required|string|max:100', //nama harus diisi, berupa string, dan maksimal 100 karakter
             'password' => 'required|min:5', //password harus diisi dan minimal 5 karakter
-            'level_id' => 'required|integer' //level_id harus diisi dan berupa angka
+            'level_id' => 'required|integer', //level_id harus diisi dan berupa angka
+            'image' => 'required|file|image|max:2048'
         ]);
+
+        $extfile = $request->image->getClientOriginalName();
+        $namaFile = 'web-' . time() . "." . $extfile;
+
+        $path = $request->image->move('gbrStarterCode', $namaFile);
+        $path = str_replace("\\", "//", $path);
+        $pathBaru = asset('gbrStarterCode/' . $namaFile);
 
         UserModel::create([
             'username' => $request->username,
             'nama' => $request->nama,
             'password' => bcrypt($request->password), //password dienkripsi sebelum disimpan
-            'level_id' => $request->level_id
+            'level_id' => $request->level_id,
+            'image' =>$pathBaru
         ]);
 
         return redirect('/user')->with('success', 'Data user berhasil disimpan');
@@ -139,14 +148,23 @@ class UserController extends Controller
             'username' => 'required|string|min:3|unique:m_user,username,'.$id.',user_id',
             'nama' => 'required|string|max:100', //nama harus diisi, berupa string, dan maks 100 karakter
             'password' => 'nullable|min:5', //password bisa diisi min 5 karakter dan bisa tidak diisi
-            'level_id' => 'required|integer' //level_id harus diisi dan berupa angka
+            'level_id' => 'required|integer', //level_id harus diisi dan berupa angka
+            'image' => 'required|file|image|max:2048'
         ]);
+
+        $extfile = $request->image->getClientOriginalName();
+        $namaFile = 'web-' . time() . "." . $extfile;
+
+        $path = $request->image->move('gbrStarterCode', $namaFile);
+        $path = str_replace("\\", "//", $path);
+        $pathBaru = asset('gbrStarterCode/' . $namaFile);
 
         UserModel::find($id)->update([
             'username' => $request->username,
             'nama' => $request->nama,
             'password' => $request->password ? bcrypt($request->password) : UserModel::find($id)->password, //password dienkripsi jika diisi, jika tidak diisi maka password tetap
-            'level_id' => $request->level_id
+            'level_id' => $request->level_id,
+            'image' => $pathBaru
         ]);
 
         return redirect('/user')->with('success', 'Data user berhasil diubah');
